@@ -89,3 +89,34 @@ rows.forEach((row) => {
     });
   });
 });
+
+window.onload = () => {
+  const footer = document.querySelector("footer");
+
+  footer.innerHTML = `
+ <p>&copy; 2024 Western Couture. All rights reserved.</p>
+  <div>
+    ${link
+      .map((linkItem) => {
+        return `<a href="${linkItem.url}">
+        <i class="${linkItem.icon}" onmouseover="this.classList.add('animate')" onmouseout="this.classList.remove('animate')"></i>
+        <span class="sr-only">${linkItem.label}</span>
+      </a>`;
+      })
+      .join("")}
+  </div>
+`;
+};
+
+const link = [
+  {
+    icon: "fa-brands fa-github fa-2xl",
+    label: "GitHub",
+    url: "https://github.com/senthil-developer/image-reveal-animation",
+  },
+  {
+    icon: "fa-solid fa-envelope fa-2xl",
+    label: "Email",
+    url: "mailto:senthildeveloper4@gmail.com",
+  },
+];

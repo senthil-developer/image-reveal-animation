@@ -9,6 +9,7 @@ body {
   height: 100%;
   font-family: "PP Neue Montreal";
   overflow-x: hidden;
+  background-color: beige;
 }
 
 a,
@@ -34,6 +35,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
+  & a {
+    color: whitesmoke;
+  }
 }
 
 section {
@@ -68,8 +73,34 @@ section {
   aspect-ratio: 4/5;
 }
 
+.hero {
+  position: relative;
+  text-align: center;
+  background: url("assets/bg.jpg");
+  height: 80svh;
+  & p {
+    font-size: xx-large;
+  }
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 1;
+  color: whitesmoke;
+}
+
 .hero h1 {
-  margin-top: 3em;
+  margin-top: 2em;
   text-align: center;
   text-transform: uppercase;
   font-size: 8.75vw;
@@ -79,16 +110,17 @@ section {
 
 .info {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 2em;
 }
 
 .info p {
   width: 25%;
+  font-size: 1.2rem;
 }
 
 .hero-imgs {
-  margin-top: 10em;
+  margin-top: 5em;
 }
 
 .clients {
@@ -111,6 +143,9 @@ section {
   padding-bottom: 1em;
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  & .col p {
+    cursor: pointer;
+  }
 }
 
 .products {
@@ -121,17 +156,85 @@ section {
 
 .about {
   display: flex;
+  & p {
+    font-size: medium;
+  }
 }
 
-.about p {
-  margin-top: 8em;
-  flex: 1;
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.outro .row {
-  margin-top: 8em;
+footer div {
+  display: flex;
+  gap: 2rem;
 }
 
+footer p {
+  font-size: xx-large;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.animate {
+  color: red;
+  transform: translateY(-10px);
+  transition: all 200ms ease;
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    height: 100svh;
+    & h1 {
+      margin-top: 20rem;
+    }
+    & p {
+      font-size: medium;
+    }
+  }
+  .info {
+    flex-direction: column;
+    & p {
+      text-align: start;
+      width: 100%;
+      font-size: medium;
+    }
+  }
+  .about {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  footer p {
+    font-size: large;
+  }
+  .product-filters {
+    overflow: scroll;
+  }
+  .products .row {
+    flex-direction: column;
+  }
+  .products .row .hidden {
+    display: none;
+  }
+  .products .row:nth-child(3),
+  .products .row:nth-child(4) {
+    display: none;
+  }
+}
 .img-1 .mask,
 .img-6 .mask,
 .img-12 .mask {
